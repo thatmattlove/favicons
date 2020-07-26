@@ -18,19 +18,30 @@
 
 ⚠️ *This library is brand new, and is still in progress. I would strongly suggest not using it in production until this message disappears.*
 
+### [Changelog](https://github.com/checktheroads/favicons/blob/master/CHANGELOG.md)
+
 </div>
 
-### [Changelog](https://github.com/checktheroads/favicons/blob/master/CHANGELOG.md)
+- [Installation](#installation)
+- [Documentation](#documentation)
+  - [CLI](#cli)
+  - [Python Sync API](#python-sync-api)
+  - [Python Async API](#python-async-api)
+  - [HTML](#html)
+  - [Tuple](#tuple)
+  - [JSON](#json)
+- [License](#license)
 
 ## Installation
 
-```console
-$ pip3 install favicons
+```shell
+pip3 install favicons
 ```
 
-## Usage
+## Documentation
 
 *More docs are coming. Remember, this is a work in progress.*
+
 
 ### CLI
 
@@ -106,6 +117,408 @@ async with Favicons(YOUR_ICON, WEB_SERVER_ROOT) as favicons:
 # mstile-310x310.png
 # mstile-310x150.png
 # favicon-196x196.png
+```
+
+### HTML
+Get HTML elements for each generated favicon:
+
+```python
+from favicons import Favicons
+
+YOUR_ICON = "/home/user/icon.jpg"
+WEB_SERVER_ROOT = "/var/www/html"
+
+async with Favicons(YOUR_ICON, WEB_SERVER_ROOT) as favicons:
+    await favicons.generate()
+    # As generator
+    html = favicons.html_gen()
+    # As tuple
+    html = favicons.html()
+
+print(html)
+# (
+#   '<link rel="None" type="image/ico" href="/favicon.ico" />',
+#   '<link rel="icon" type="image/png" href="/favicon-16x16.png" />',
+#   '<link rel="icon" type="image/png" href="/favicon-32x32.png" />',
+#   '<link rel="icon" type="image/png" href="/favicon-64x64.png" />',
+#   '<link rel="icon" type="image/png" href="/favicon-96x96.png" />',
+#   '<link rel="icon" type="image/png" href="/favicon-180x180.png" />',
+#   '<link rel="apple-touch-icon" type="image/png" '
+#   'href="/apple-touch-icon-57x57.png" />',
+#   '<link rel="apple-touch-icon" type="image/png" '
+#   'href="/apple-touch-icon-60x60.png" />',
+#   '<link rel="apple-touch-icon" type="image/png" '
+#   'href="/apple-touch-icon-72x72.png" />',
+#   '<link rel="apple-touch-icon" type="image/png" '
+#   'href="/apple-touch-icon-76x76.png" />',
+#   '<link rel="apple-touch-icon" type="image/png" '
+#   'href="/apple-touch-icon-114x114.png" />',
+#   '<link rel="apple-touch-icon" type="image/png" '
+#   'href="/apple-touch-icon-120x120.png" />',
+#   '<link rel="apple-touch-icon" type="image/png" '
+#   'href="/apple-touch-icon-144x144.png" />',
+#   '<link rel="apple-touch-icon" type="image/png" '
+#   'href="/apple-touch-icon-152x152.png" />',
+#   '<link rel="apple-touch-icon" type="image/png" '
+#   'href="/apple-touch-icon-167x167.png" />',
+#   '<link rel="apple-touch-icon" type="image/png" '
+#   'href="/apple-touch-icon-180x180.png" />',
+#   '<link rel="None" type="image/png" href="/mstile-70x70.png" />',
+#   '<link rel="None" type="image/png" href="/mstile-270x270.png" />',
+#   '<link rel="None" type="image/png" href="/mstile-310x310.png" />',
+#   '<link rel="None" type="image/png" href="/mstile-310x150.png" />',
+#   '<link rel="shortcut icon" type="image/png" href="/favicon-196x196.png" />'
+# )
+```
+
+### Tuple
+Get a Python tuple containing each generated favicon's properties:
+
+```python
+from favicons import Favicons
+
+YOUR_ICON = "/home/user/icon.jpg"
+WEB_SERVER_ROOT = "/var/www/html"
+
+async with Favicons(YOUR_ICON, WEB_SERVER_ROOT) as favicons:
+    await favicons.generate()
+    as_tuple = favicons.formats()
+    print(as_tuple)
+# (
+#   {
+#     'dimensions': (64, 64),
+#     'image_format': 'ico',
+#     'prefix': 'favicon',
+#     'rel': None
+#   },
+#   {
+#     'dimensions': (16, 16),
+#     'image_format': 'png',
+#     'prefix': 'favicon',
+#     'rel': 'icon'
+#   },
+#   {
+#     'dimensions': (32, 32),
+#     'image_format': 'png',
+#     'prefix': 'favicon',
+#     'rel': 'icon'
+#   },
+#   {
+#     'dimensions': (64, 64),
+#     'image_format': 'png',
+#     'prefix': 'favicon',
+#     'rel': 'icon'
+#   },
+#   {
+#     'dimensions': (96, 96),
+#     'image_format': 'png',
+#     'prefix': 'favicon',
+#     'rel': 'icon'
+#   },
+#   {
+#     'dimensions': (180, 180),
+#     'image_format': 'png',
+#     'prefix': 'favicon',
+#     'rel': 'icon'
+#   },
+#   {
+#     'dimensions': (57, 57),
+#     'image_format': 'png',
+#     'prefix': 'apple-touch-icon',
+#     'rel': 'apple-touch-icon'
+#   },
+#   {
+#     'dimensions': (60, 60),
+#     'image_format': 'png',
+#     'prefix': 'apple-touch-icon',
+#     'rel': 'apple-touch-icon'
+#   },
+#   {
+#     'dimensions': (72, 72),
+#     'image_format': 'png',
+#     'prefix': 'apple-touch-icon',
+#     'rel': 'apple-touch-icon'
+#   },
+#   {
+#     'dimensions': (76, 76),
+#     'image_format': 'png',
+#     'prefix': 'apple-touch-icon',
+#     'rel': 'apple-touch-icon'
+#   },
+#   {
+#     'dimensions': (114, 114),
+#     'image_format': 'png',
+#     'prefix': 'apple-touch-icon',
+#     'rel': 'apple-touch-icon'
+#   },
+#   {
+#     'dimensions': (120, 120),
+#     'image_format': 'png',
+#     'prefix': 'apple-touch-icon',
+#     'rel': 'apple-touch-icon'
+#   },
+#   {
+#     'dimensions': (144, 144),
+#     'image_format': 'png',
+#     'prefix': 'apple-touch-icon',
+#     'rel': 'apple-touch-icon'
+#   },
+#   {
+#     'dimensions': (152, 152),
+#     'image_format': 'png',
+#     'prefix': 'apple-touch-icon',
+#     'rel': 'apple-touch-icon'
+#   },
+#   {
+#     'dimensions': (167, 167),
+#     'image_format': 'png',
+#     'prefix': 'apple-touch-icon',
+#     'rel': 'apple-touch-icon'
+#   },
+#   {
+#     'dimensions': (180, 180),
+#     'image_format': 'png',
+#     'prefix': 'apple-touch-icon',
+#     'rel': 'apple-touch-icon'
+#   },
+#   {
+#     'dimensions': (70, 70),
+#     'image_format': 'png',
+#     'prefix': 'mstile',
+#     'rel': None
+#   },
+#   {
+#     'dimensions': (270, 270),
+#     'image_format': 'png',
+#     'prefix': 'mstile',
+#     'rel': None
+#   },
+#   {
+#     'dimensions': (310, 310),
+#     'image_format': 'png',
+#     'prefix': 'mstile',
+#     'rel': None
+#   },
+#   {
+#     'dimensions': (310, 150),
+#     'image_format': 'png',
+#     'prefix': 'mstile',
+#     'rel': None
+#   },
+#   {
+#     'dimensions': (196, 196),
+#     'image_format': 'png',
+#     'prefix': 'favicon',
+#     'rel': 'shortcut icon'
+#   }
+# )
+```
+
+### JSON
+Get a JSON array containing each generated favicon's properties:
+
+```python
+from favicons import Favicons
+
+YOUR_ICON = "/home/user/icon.jpg"
+WEB_SERVER_ROOT = "/var/www/html"
+
+async with Favicons(YOUR_ICON, WEB_SERVER_ROOT) as favicons:
+    await favicons.generate()
+    as_json = favicons.json(indent=2)
+    print(as_json)
+
+# [
+#   {
+#     "image_format": "ico",
+#     "dimensions": [
+#       64,
+#       64
+#     ],
+#     "prefix": "favicon",
+#     "rel": null
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       16,
+#       16
+#     ],
+#     "prefix": "favicon",
+#     "rel": "icon"
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       32,
+#       32
+#     ],
+#     "prefix": "favicon",
+#     "rel": "icon"
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       64,
+#       64
+#     ],
+#     "prefix": "favicon",
+#     "rel": "icon"
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       96,
+#       96
+#     ],
+#     "prefix": "favicon",
+#     "rel": "icon"
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       180,
+#       180
+#     ],
+#     "prefix": "favicon",
+#     "rel": "icon"
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       57,
+#       57
+#     ],
+#     "prefix": "apple-touch-icon",
+#     "rel": "apple-touch-icon"
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       60,
+#       60
+#     ],
+#     "prefix": "apple-touch-icon",
+#     "rel": "apple-touch-icon"
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       72,
+#       72
+#     ],
+#     "prefix": "apple-touch-icon",
+#     "rel": "apple-touch-icon"
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       76,
+#       76
+#     ],
+#     "prefix": "apple-touch-icon",
+#     "rel": "apple-touch-icon"
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       114,
+#       114
+#     ],
+#     "prefix": "apple-touch-icon",
+#     "rel": "apple-touch-icon"
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       120,
+#       120
+#     ],
+#     "prefix": "apple-touch-icon",
+#     "rel": "apple-touch-icon"
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       144,
+#       144
+#     ],
+#     "prefix": "apple-touch-icon",
+#     "rel": "apple-touch-icon"
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       152,
+#       152
+#     ],
+#     "prefix": "apple-touch-icon",
+#     "rel": "apple-touch-icon"
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       167,
+#       167
+#     ],
+#     "prefix": "apple-touch-icon",
+#     "rel": "apple-touch-icon"
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       180,
+#       180
+#     ],
+#     "prefix": "apple-touch-icon",
+#     "rel": "apple-touch-icon"
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       70,
+#       70
+#     ],
+#     "prefix": "mstile",
+#     "rel": null
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       270,
+#       270
+#     ],
+#     "prefix": "mstile",
+#     "rel": null
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       310,
+#       310
+#     ],
+#     "prefix": "mstile",
+#     "rel": null
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       310,
+#       150
+#     ],
+#     "prefix": "mstile",
+#     "rel": null
+#   },
+#   {
+#     "image_format": "png",
+#     "dimensions": [
+#       196,
+#       196
+#     ],
+#     "prefix": "favicon",
+#     "rel": "shortcut icon"
+#   }
+# ]
 ```
 
 ## License
