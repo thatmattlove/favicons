@@ -1,0 +1,16 @@
+[flake8]
+max-line-length=88
+count=True
+show-source=False
+statistics=True
+exclude=.git, __pycache__, test.py
+filename=*.py
+ignore=W503,C0330,R504,D202,S403,S301
+per-file-ignores=
+    # Disable unused import warning for modules
+    favicons/*/__init__.py:F401
+    favicons/__init__.py:F401
+select=B, BLK, C, D, E, F, I, II, N, P, PIE, S, R, W
+disable-noqa=False
+hang-closing=False
+max-complexity=10

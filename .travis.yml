@@ -1,0 +1,23 @@
+---
+language: minimal
+dist: bionic
+
+jobs:
+  include:
+    - stage: Lint
+      before_install: pip install poetry
+      install: poetry install
+      script:
+        - flake8 favicons
+    - stage: Publish
+      script: skip
+      before_deploy:
+        - pip install poetry
+        - poetry config pypi-token.pypi $PYPI_TOKEN
+        - poetry build
+      deploy:
+        provider: script
+        script: poetry publish
+        skip_cleanup: true
+        on:
+          branch: master
