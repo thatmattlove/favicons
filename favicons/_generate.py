@@ -4,17 +4,20 @@
 import json as _json
 import math
 import asyncio
-from typing import Any, Type, Tuple, Callable, Generator
-from pathlib import Path as _Path
+from typing import Any, Type, Tuple, Union, Callable, Awaitable, Generator, Collection
+from pathlib import Path
 
 # Third Party
 from PIL import Image as PILImage
 
 # Project
-from favicons._util import validate_path
+from favicons._util import validate_path, generate_icon_types
 from favicons._types import Color, FaviconProperties
-from favicons._constants import HTML_LINK, ICON_TYPES, SUPPORTED_FORMATS
+from favicons._constants import HTML_LINK, SUPPORTED_FORMATS
 from favicons._exceptions import FaviconNotSupported
+
+LoosePath = Union[Path, str]
+LooseColor = Union[Collection[int], str]
 
 
 class Favicons:
@@ -22,9 +25,9 @@ class Favicons:
 
     def __init__(
         self,
-        source: _Path,
-        output_directory: _Path,
-        background_color: Color = "#000000",
+        source: LoosePath,
+        output_directory: LoosePath,
+        background_color: LooseColor = "#000000",
         transparent: bool = True,
         base_url: str = "/",
         *args: Any,
@@ -34,11 +37,11 @@ class Favicons:
         self._validated = False
         self._source = source
         self._output_directory = output_directory
-        self._formats = tuple(FaviconProperties(**f) for f in ICON_TYPES)
-        self.background_color = Color(background_color)
+        self._formats = tuple(generate_icon_types())
         self.transparent = transparent
         self.base_url = base_url
-        self.generate = self.sgenerate
+        self.background_color: Color = Color(background_color)
+        self.generate: Union[Callable, Awaitable] = self.sgenerate
 
     def _validate(self) -> None:
 
@@ -50,7 +53,7 @@ class Favicons:
 
         self._validated = True
 
-    def __enter__(self) -> Callable:
+    def __enter__(self) -> "Favicons":
         """Enter Favicons context."""
         self._validate()
         self.generate = self.sgenerate
@@ -58,11 +61,11 @@ class Favicons:
 
     def __exit__(
         self, exc_type: Type = None, exc_value: Any = None, traceback: str = None
-    ):
+    ) -> None:
         """Exit Favicons context."""
         pass
 
-    async def __aenter__(self):
+    async def __aenter__(self) -> "Favicons":
         """Enter Favicons context."""
         self._validate()
         self.generate = self.agenerate
@@ -70,7 +73,7 @@ class Favicons:
 
     async def __aexit__(
         self, exc_type: Type = None, exc_value: Any = None, traceback: str = None
-    ):
+    ) -> None:
         """Exit Favicons context."""
         pass
 
@@ -88,7 +91,7 @@ class Favicons:
     def _generate_single(self, format_properties: FaviconProperties) -> None:
         with PILImage.open(self.source) as src:
             output_file = self.output_directory / str(format_properties)
-            bg = self.background_color.colors
+            bg: Tuple[int, ...] = self.background_color.colors
 
             # If transparency is enabled, add alpha channel to color.
             if self.transparent:

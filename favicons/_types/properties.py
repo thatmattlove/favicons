@@ -2,7 +2,7 @@
 
 # Standard Library
 import json as _json
-from typing import Dict, Iterable, Optional
+from typing import Tuple, Mapping, Optional
 
 
 class FaviconProperties:
@@ -11,7 +11,7 @@ class FaviconProperties:
     def __init__(
         self,
         image_fmt: str,
-        dimensions: Iterable[int],
+        dimensions: Tuple[int, int],
         prefix: str,
         rel: Optional[str] = None,
     ) -> None:
@@ -32,17 +32,17 @@ class FaviconProperties:
         """Height from dimensions."""
         return self.dimensions[1]
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Representation of instance."""
         attr_names = (a for a in self.__dir__() if not a.startswith("_"))
         attrs = (f"{a}={getattr(self, a)}" for a in attr_names)
         return f"{self.__class__.__name__}({', '.join(attrs)})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Represent instance as string."""
         return self._get_filename_parts()
 
-    def dict(self) -> Dict:
+    def dict(self) -> Mapping:
         """Represent instance as dict."""
         return {
             "image_format": self.image_fmt,
@@ -55,18 +55,17 @@ class FaviconProperties:
         """Represent instance as JSON string."""
         return _json.dumps(self.dict())
 
-    def _get_filename_parts(self) -> Iterable:
+    def _get_filename_parts(self) -> str:
         """Don't add dimensions to favicon.ico."""
+        parts: Tuple[str, ...] = (self.prefix,)
+
         if self.image_fmt == "ico":
-            parts = (
-                self.prefix,
+            parts += (
                 ".",
                 self.image_fmt,
             )
         else:
-
-            parts = (
-                self.prefix,
+            parts += (
                 "-",
                 "x".join(str(d) for d in self.dimensions),
                 ".",

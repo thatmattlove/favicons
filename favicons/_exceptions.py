@@ -2,7 +2,7 @@
 
 # Standard Library
 import json as _json
-from typing import Any, Dict, Iterable
+from typing import Any, Dict, Union, Iterable, Generator
 from pathlib import Path
 
 # Project
@@ -27,11 +27,6 @@ class FaviconsError(Exception):
     def kwargs(self) -> Dict:
         """Keyword arguments as a dict."""
         return dict(self._kwargs)
-
-    @property
-    def args(self) -> Iterable:
-        """Positional arguments as a tuple."""
-        return tuple(self._args)
 
     def __repr__(self) -> str:
         """Representation of exception."""
@@ -86,7 +81,13 @@ class FaviconColorError(FaviconsError):
     """Raised if an input color is invalid."""
 
     def __init__(
-        self, color: str, message: str = "Color '{color}' is not a valid color."
+        self,
+        color: Union[str, Iterable, Generator],
+        message: str = "Color '{color}' is not a valid color.",
     ) -> None:
         """Set message."""
-        super().__init__(message, color=str(color))
+        if isinstance(color, Iterable):
+            color = str(color)
+        elif isinstance(color, Generator):
+            color = ",".join(color)
+        super().__init__(message, color=color)
