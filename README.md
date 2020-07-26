@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Favicons</h1>
-  <h3>Favicon generator for Python 3 with sync & async APIs, CLI, & HTML generation.</h3>
+  <h3>Favicon generator for Python 3 with strongly typed sync & async APIs, CLI, & HTML generation.</h3>
 </div>
 
 <hr/>
