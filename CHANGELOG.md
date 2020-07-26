@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.0.2 - 2020-07-26
+
+### Added
+- More docs
+
+### Changed
+- Export exceptions from top level
+- Icon Properties uses Tuple for dimensions instead of List
+- Add mypy type checking
+
+### Fixed
+- Type annotations and inconsistent type issues pointed out by mypy
+
 ## 0.0.1 - 2020-07-26
 
 Initial Release
