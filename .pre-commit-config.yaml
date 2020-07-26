@@ -11,5 +11,5 @@ repos:
     hooks:
       - id: mypy
         name: Type Checking
-        # entry: poetry run mypy favicons --ignore-missing-imports
+        entry: poetry run mypy favicons
         pass_filenames: false
