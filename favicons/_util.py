@@ -5,7 +5,7 @@ from typing import Any
 from pathlib import Path
 
 # Project
-from favicons.exceptions import FaviconsError, FaviconNotFound
+from favicons._exceptions import FaviconsError, FaviconNotFound
 
 
 def validate_path(path: Any, must_exist: bool = True) -> Path:

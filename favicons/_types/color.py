@@ -5,7 +5,7 @@ import re
 from typing import Union, Iterable, Generator
 
 # Project
-from favicons.exceptions import FaviconColorError
+from favicons._exceptions import FaviconColorError
 
 _RGB_STR_PATTERN = re.compile(r"^rgb\((\d+),\s?(\d+),\s?(\d+)\)$")
 _HEX_STR_PATTERN3 = re.compile(r"^\#?([A-Fa-f0-9])([A-Fa-f0-9])([A-Fa-f0-9])$")

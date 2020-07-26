@@ -4,7 +4,7 @@
 import json as _json
 import math
 import asyncio
-from typing import Any, Type, Tuple, Callable, Iterable, Generator
+from typing import Any, Type, Tuple, Callable, Generator
 from pathlib import Path as _Path
 
 # Third Party
@@ -14,7 +14,7 @@ from PIL import Image as PILImage
 from favicons._util import validate_path
 from favicons._types import Color, FaviconProperties
 from favicons._constants import HTML_LINK, ICON_TYPES, SUPPORTED_FORMATS
-from favicons.exceptions import FaviconNotSupported
+from favicons._exceptions import FaviconNotSupported
 
 
 class Favicons:
@@ -139,9 +139,9 @@ class Favicons:
         """Get tuple of HTML strings."""
         return tuple(self.html_gen())
 
-    def formats(self) -> Iterable:
+    def formats(self) -> Tuple:
         """Get image formats as list."""
-        return [f.dict() for f in self._formats]
+        return tuple(f.dict() for f in self._formats)
 
     def json(self, *args: Any, **kwargs: Any) -> str:
         """Get image formats as JSON string."""
