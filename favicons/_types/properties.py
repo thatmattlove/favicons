@@ -46,7 +46,7 @@ class FaviconProperties:
         """Represent instance as dict."""
         return {
             "image_format": self.image_fmt,
-            "dimensions": list(self.dimensions),
+            "dimensions": self.dimensions,
             "prefix": self.prefix,
             "rel": self.rel,
         }
