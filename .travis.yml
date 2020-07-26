@@ -3,7 +3,7 @@ language: python
 
 jobs:
   include:
-    - stage: Lint
+    - stage: Lint & Type Check
       python:
         - '3.6'
         - '3.7'
@@ -11,7 +11,7 @@ jobs:
       before_install: pip install poetry
       install: poetry install
       script:
-        - flake8 favicons
+        - pre-commit run --all-files
     - stage: Publish
       script: skip
       before_deploy:
