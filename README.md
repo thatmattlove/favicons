@@ -25,11 +25,15 @@
 - [Installation](#installation)
 - [Documentation](#documentation)
   - [CLI](#cli)
+    - [`generate`](#generate)
+    - [`html`](#html)
+    - [`json`](#json)
+    - [`names`](#names)
   - [Python Sync API](#python-sync-api)
   - [Python Async API](#python-async-api)
-  - [HTML](#html)
+  - [HTML](#html-1)
   - [Tuple](#tuple)
-  - [JSON](#json)
+  - [JSON](#json-1)
 - [License](#license)
 
 ## Installation
@@ -42,10 +46,52 @@ pip3 install favicons
 
 *More docs are coming. Remember, this is a work in progress.*
 
-
 ### CLI
 
-*Coming soon*
+```console
+$ favicons --help
+
+Usage: favicons [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  generate  Generate Favicons
+  html      Get favicons as HTML.
+  json      Get favicons as JSON.
+  names     Get favicon file names.
+```
+
+#### `generate`
+
+Generate Favicons from the command line:
+
+```console
+Usage: favicons generate [OPTIONS]
+
+  Generate Favicons
+
+Options:
+  --source PATH                    Source Image  [required]
+  --output-directory PATH          Output Directory  [required]
+  --background-color TEXT          Background Color  [default: #000000]
+  --transparent / --no-transparent Transparent Background  [default: True]
+  --base-url TEXT                  Base URL for HTML output  [default: /]
+  --help                           Show this message and exit.
+```
+
+#### `html`
+
+Generate HTML elements (same options as `generate`).
+
+#### `json`
+
+Generate JSON array of favicon objects (same options as `generate`).
+
+#### `names`
+
+Generate list of favicon file names (same options as `generate`).
 
 ### Python Sync API
 

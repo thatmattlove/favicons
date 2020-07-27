@@ -1,18 +1,29 @@
 [tool.poetry]
 name = "favicons"
-version = "0.0.2"
-description = "Favicon generator for Python"
+version = "0.0.3"
+description = "Favicon generator for Python 3 with strongly typed sync & async APIs, CLI, & HTML generation."
 authors = ["checktheroads <matt@allroads.io>"]
 readme = "README.md"
 homepage = "https://github.com/checktheroads/favicons"
 repository = "https://github.com/checktheroads/favicons"
 license = "BSD-3-Clause-Clear"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: User Interfaces",
+    "Typing :: Typed",
+]
 
 [tool.poetry.dependencies]
 python = "^3.6.1"
-click = "^7.1"
 rich = "^3.3.2"
 pillow = "^7.2"
+typer = "^0.3.1"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"
@@ -38,6 +49,9 @@ mccabe = "^0.6.1"
 pep8-naming = "^0.11.1"
 pre-commit = "^2.6.0"
 mypy = "^0.782"
+
+[tool.poetry.scripts]
+favicons = "favicons:cli"
 
 [tool.black]
 line-length = 88
