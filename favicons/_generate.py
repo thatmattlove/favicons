@@ -4,7 +4,7 @@
 import json as _json
 import math
 import asyncio
-from typing import Any, Type, Tuple, Union, Callable, Awaitable, Generator, Collection
+from typing import Any, Type, Tuple, Union, Callable, Coroutine, Generator, Collection
 from pathlib import Path
 
 # Third Party
@@ -41,7 +41,8 @@ class Favicons:
         self.transparent = transparent
         self.base_url = base_url
         self.background_color: Color = Color(background_color)
-        self.generate: Union[Callable, Awaitable] = self.sgenerate
+        self.generate: Union[Callable, Coroutine] = self.sgenerate
+        self.completed: int = 0
 
     def _validate(self) -> None:
 
@@ -108,6 +109,8 @@ class Favicons:
 
             # Save new file.
             dst.save(output_file, format_properties.image_fmt)
+
+            self.completed += 1
 
     async def _agenerate_single(self, format_properties: FaviconProperties) -> None:
         """Awaitable version of _generate_single."""
