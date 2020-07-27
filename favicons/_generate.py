@@ -4,14 +4,24 @@
 import json as _json
 import math
 import asyncio
-from typing import Any, Type, Tuple, Union, Callable, Coroutine, Generator, Collection
+from typing import (
+    Any,
+    Type,
+    Tuple,
+    Union,
+    Callable,
+    Optional,
+    Coroutine,
+    Generator,
+    Collection,
+)
 from pathlib import Path
 
 # Third Party
 from PIL import Image as PILImage
 
 # Project
-from favicons._util import validate_path, generate_icon_types
+from favicons._util import svg_to_png, validate_path, generate_icon_types
 from favicons._types import Color, FaviconProperties
 from favicons._constants import HTML_LINK, SUPPORTED_FORMATS
 from favicons._exceptions import FaviconNotSupported
@@ -35,7 +45,6 @@ class Favicons:
     ) -> None:
         """Initialize Favicons class."""
         self._validated = False
-        self._source = source
         self._output_directory = output_directory
         self._formats = tuple(generate_icon_types())
         self.transparent = transparent
@@ -43,6 +52,14 @@ class Favicons:
         self.background_color: Color = Color(background_color)
         self.generate: Union[Callable, Coroutine] = self.sgenerate
         self.completed: int = 0
+        self._temp_source: Optional[Path] = None
+
+        if isinstance(source, str):
+            source = Path(source)
+
+        self._source = source
+
+        self._check_source_format()
 
     def _validate(self) -> None:
 
@@ -64,6 +81,7 @@ class Favicons:
         self, exc_type: Type = None, exc_value: Any = None, traceback: str = None
     ) -> None:
         """Exit Favicons context."""
+        self._close_temp_source()
         pass
 
     async def __aenter__(self) -> "Favicons":
@@ -76,7 +94,21 @@ class Favicons:
         self, exc_type: Type = None, exc_value: Any = None, traceback: str = None
     ) -> None:
         """Exit Favicons context."""
+        self._close_temp_source()
         pass
+
+    def _close_temp_source(self) -> None:
+        """Close temporary file if it exists."""
+        if self._temp_source is not None:
+            try:
+                self._temp_source.unlink()
+            except FileNotFoundError:
+                pass
+
+    def _check_source_format(self) -> None:
+        """Convert source image to PNG if it's in SVG format."""
+        if self._source.suffix == ".svg":
+            self._source = svg_to_png(self._source, self.background_color)
 
     @staticmethod
     def _get_center_point(background: PILImage, foreground: PILImage) -> Tuple:

@@ -1,6 +1,6 @@
 """Static values for one way import."""
 
-SUPPORTED_FORMATS = (".svg", ".jpeg", ".jpg", ".png")
+SUPPORTED_FORMATS = (".svg", ".jpeg", ".jpg", ".png", ".tiff", ".tif")
 
 HTML_LINK = '<link rel="{rel}" type="{type}" href="{href}" />'
 
