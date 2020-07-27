@@ -24,6 +24,7 @@
 
 - [Installation](#installation)
 - [Documentation](#documentation)
+  - [Supported Formats](#supported-formats)
   - [CLI](#cli)
     - [`generate`](#generate)
     - [`html`](#html)
@@ -45,6 +46,12 @@ pip3 install favicons
 ## Documentation
 
 *More docs are coming. Remember, this is a work in progress.*
+
+### Supported Formats
+- SVG
+- PNG
+- JPEG
+- TIFF
 
 ### CLI
 
