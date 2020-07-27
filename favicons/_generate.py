@@ -64,7 +64,7 @@ class Favicons:
     def _validate(self) -> None:
 
         self.source = validate_path(self._source)
-        self.output_directory = validate_path(self._output_directory)
+        self.output_directory = validate_path(self._output_directory, create=True)
 
         if self.source.suffix.lower() not in SUPPORTED_FORMATS:
             raise FaviconNotSupported(self.source)
