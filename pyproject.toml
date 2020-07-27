@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "favicons"
-version = "0.0.4"
+version = "0.0.5"
 description = "Favicon generator for Python 3 with strongly typed sync & async APIs, CLI, & HTML generation."
 authors = ["checktheroads <matt@allroads.io>"]
 readme = "README.md"
