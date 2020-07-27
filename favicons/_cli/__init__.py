@@ -1,0 +1,1 @@
+"""Favicons Command Line Interface."""
