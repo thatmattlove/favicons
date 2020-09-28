@@ -16,8 +16,6 @@
 
 <br/>
 
-⚠️ *This library is brand new, and is still in progress. I would strongly suggest not using it in production until this message disappears.*
-
 ### [Changelog](https://github.com/checktheroads/favicons/blob/master/CHANGELOG.md)
 
 </div>
