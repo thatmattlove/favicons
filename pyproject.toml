@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "favicons"
-version = "0.0.6"
+version = "0.0.7"
 description = "Favicon generator for Python 3 with strongly typed sync & async APIs, CLI, & HTML generation."
 authors = ["checktheroads <matt@allroads.io>"]
 readme = "README.md"
@@ -20,7 +20,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6.7"
+python = "^3.6.1"
 pillow = "^7.2"
 rich = "^7.1"
 svglib = "^1.0.0"
