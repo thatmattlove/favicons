@@ -20,7 +20,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6.9"
+python = "^3.6.7"
 pillow = "^7.2"
 rich = "^7.1"
 svglib = "^1.0.0"
