@@ -9,14 +9,14 @@
 
 [![PyPI](https://img.shields.io/pypi/v/favicons?style=for-the-badge)](https://pypi.org/project/favicons/)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/favicons?style=for-the-badge)
-[![CI](https://img.shields.io/travis/com/checktheroads/favicons?style=for-the-badge)](https://travis-ci.com/github/checktheroads/favicons)
+[![CI](https://img.shields.io/travis/com/thatmattlove/favicons?style=for-the-badge)](https://travis-ci.com/github/thatmattlove/favicons)
 
-[![GitHub Contributors](https://img.shields.io/github/contributors/checktheroads/favicons?style=for-the-badge&color=blueviolet)](https://github.com/checktheroads/favicons)
+[![GitHub Contributors](https://img.shields.io/github/contributors/thatmattlove/favicons?style=for-the-badge&color=blueviolet)](https://github.com/thatmattlove/favicons)
 
 
 <br/>
 
-### [Changelog](https://github.com/checktheroads/favicons/blob/master/CHANGELOG.md)
+### [Changelog](https://github.com/thatmattlove/favicons/blob/master/CHANGELOG.md)
 
 </div>
 
@@ -574,4 +574,4 @@ async with Favicons(YOUR_ICON, WEB_SERVER_ROOT) as favicons:
 
 ## License
 
-[Clear BSD License](https://github.com/checktheroads/blob/favicons/master/LICENSE)
+[Clear BSD License](https://github.com/thatmattlove/blob/favicons/master/LICENSE)

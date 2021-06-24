@@ -1,5 +1,5 @@
 [tool.poetry]
-authors = ["checktheroads <matt@allroads.io>"]
+authors = ["Matt Love <matt@hyperglass.dev>"]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Programming Language :: Python :: 3.6",
@@ -12,11 +12,11 @@ classifiers = [
   "Typing :: Typed",
 ]
 description = "Favicon generator for Python 3 with strongly typed sync & async APIs, CLI, & HTML generation."
-homepage = "https://github.com/checktheroads/favicons"
+homepage = "https://github.com/thatmattlove/favicons"
 license = "BSD-3-Clause-Clear"
 name = "favicons"
 readme = "README.md"
-repository = "https://github.com/checktheroads/favicons"
+repository = "https://github.com/thatmattlove/favicons"
 version = "0.0.9"
 
 [tool.poetry.dependencies]
