@@ -9,11 +9,7 @@ class FaviconProperties:
     """Data Model for Favicon Properties."""
 
     def __init__(
-        self,
-        image_fmt: str,
-        dimensions: Tuple[int, int],
-        prefix: str,
-        rel: Optional[str] = None,
+        self, image_fmt: str, dimensions: Tuple[int, int], prefix: str, rel: Optional[str] = None,
     ) -> None:
         """Set properties."""
 

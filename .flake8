@@ -1,5 +1,5 @@
 [flake8]
-max-line-length=88
+max-line-length=100
 count=True
 show-source=False
 statistics=True

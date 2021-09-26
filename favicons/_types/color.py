@@ -21,9 +21,7 @@ def get_matches(pattern: Pattern, search: str) -> Generator[str, None, None]:
         for match in matches.groups():
             yield match
     else:
-        raise FaviconsError(
-            f"Pattern {repr(pattern)} did not match anything in {repr(search)}"
-        )
+        raise FaviconsError(f"Pattern {repr(pattern)} did not match anything in {repr(search)}")
 
 
 class Color:

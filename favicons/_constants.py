@@ -75,10 +75,5 @@ ICON_TYPES = (
     {"image_fmt": "png", "rel": None, "dimensions": (270, 270), "prefix": "mstile"},
     {"image_fmt": "png", "rel": None, "dimensions": (310, 310), "prefix": "mstile"},
     {"image_fmt": "png", "rel": None, "dimensions": (310, 150), "prefix": "mstile"},
-    {
-        "image_fmt": "png",
-        "rel": "shortcut icon",
-        "dimensions": (196, 196),
-        "prefix": "favicon",
-    },
+    {"image_fmt": "png", "rel": "shortcut icon", "dimensions": (196, 196), "prefix": "favicon"},
 )

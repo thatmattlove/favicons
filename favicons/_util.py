@@ -11,9 +11,7 @@ from favicons._constants import ICON_TYPES
 from favicons._exceptions import FaviconsError, FaviconNotFound
 
 
-def validate_path(
-    path: Union[Path, str], must_exist: bool = True, create: bool = False
-) -> Path:
+def validate_path(path: Union[Path, str], must_exist: bool = True, create: bool = False) -> Path:
     """Validate a path and ensure it's a Path object."""
 
     if isinstance(path, str):

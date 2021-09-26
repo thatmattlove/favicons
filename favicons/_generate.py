@@ -77,9 +77,7 @@ class Favicons:
         self.generate = self.sgenerate
         return self
 
-    def __exit__(
-        self, exc_type: Type = None, exc_value: Any = None, traceback: str = None
-    ) -> None:
+    def __exit__(self, exc_type: Type = None, exc_value: Any = None, traceback: str = None) -> None:
         """Exit Favicons context."""
         self._close_temp_source()
         pass
@@ -168,9 +166,7 @@ class Favicons:
         """Get generator of HTML strings."""
         for fmt in self._formats:
             yield HTML_LINK.format(
-                rel=fmt.rel,
-                type=f"image/{fmt.image_fmt}",
-                href=self.base_url + str(fmt),
+                rel=fmt.rel, type=f"image/{fmt.image_fmt}", href=self.base_url + str(fmt),
             )
 
     def html(self) -> Tuple:

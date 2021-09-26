@@ -100,9 +100,7 @@ def names(
     ) as favicons:
         for icon in favicons.filenames_gen():
             fname, ext = icon.split(".")
-            console.print(
-                f"[bold yellow]{fname}[/bold yellow].[bold blue]{ext}[/bold blue]"
-            )
+            console.print(f"[bold yellow]{fname}[/bold yellow].[bold blue]{ext}[/bold blue]")
 
 
 @cli.command()
