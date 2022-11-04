@@ -32,9 +32,9 @@ def validate_path(path: Union[Path, str], must_exist: bool = True, create: bool 
     return path
 
 
-def generate_icon_types() -> Generator[FaviconProperties, None, None]:
+def generate_icon_types(icon_types = ICON_TYPES) -> Generator[FaviconProperties, None, None]:
     """Get icon type objects."""
-    for icon_type in ICON_TYPES:
+    for icon_type in icon_types:
         if isinstance(icon_type, Mapping):
             yield FaviconProperties(**icon_type)
 
