@@ -6,6 +6,7 @@ import math
 import asyncio
 from typing import (
     Any,
+    Mapping,
     Type,
     Tuple,
     Union,
@@ -40,7 +41,7 @@ class Favicons:
         background_color: LooseColor = "#000000",
         transparent: bool = True,
         base_url: str = "/",
-        icon_types = ICON_TYPES,
+        icon_types: Mapping[str,str|tuple(int)] = ICON_TYPES,
         *args: Any,
         **kwargs: Any,
     ) -> None:

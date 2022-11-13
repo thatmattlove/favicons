@@ -1,10 +1,12 @@
 """Static values for one way import."""
 
+from typing import Mapping
+
 SUPPORTED_FORMATS = (".svg", ".jpeg", ".jpg", ".png", ".tiff", ".tif")
 
 HTML_LINK = '<link rel="{rel}" type="{type}" href="{href}" />'
 
-ICON_TYPES = (
+ICON_TYPES: Mapping[str,str|tuple(int)] = (
     {"image_fmt": "ico", "rel": None, "dimensions": (64, 64), "prefix": "favicon"},
     {"image_fmt": "png", "rel": "icon", "dimensions": (16, 16), "prefix": "favicon"},
     {"image_fmt": "png", "rel": "icon", "dimensions": (32, 32), "prefix": "favicon"},

@@ -32,12 +32,11 @@ def validate_path(path: Union[Path, str], must_exist: bool = True, create: bool 
     return path
 
 
-def generate_icon_types(icon_types = ICON_TYPES) -> Generator[FaviconProperties, None, None]:
+def generate_icon_types(icon_types: Mapping[str,str|tuple(int)] = ICON_TYPES) -> Generator[FaviconProperties, None, None]:
     """Get icon type objects."""
     for icon_type in icon_types:
         if isinstance(icon_type, Mapping):
             yield FaviconProperties(**icon_type)
-
 
 def svg_to_png(svg_path: Path, background_color: Color) -> Path:
     """Convert an SVG vector to a PNG file."""
