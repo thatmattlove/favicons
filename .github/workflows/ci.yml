@@ -28,8 +28,8 @@ jobs:
       - name: Install Python Dependencies
         run: poetry install
 
-      - name: Linting (Flake8)
-        run: poetry run flake8 favicons
+      - name: Linting (Ruff)
+        run: poetry run ruff favicons
 
       - name: Type Checking (MyPy)
         run: poetry run mypy favicons
