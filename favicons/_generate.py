@@ -6,6 +6,7 @@ import math
 import asyncio
 from typing import (
     Any,
+    Mapping,
     Type,
     Tuple,
     Union,
@@ -23,7 +24,7 @@ from PIL import Image as PILImage
 # Project
 from favicons._util import svg_to_png, validate_path, generate_icon_types
 from favicons._types import Color, FaviconProperties
-from favicons._constants import HTML_LINK, SUPPORTED_FORMATS
+from favicons._constants import HTML_LINK, SUPPORTED_FORMATS, ICON_TYPES
 from favicons._exceptions import FaviconNotSupported
 
 LoosePath = Union[Path, str]
@@ -40,13 +41,14 @@ class Favicons:
         background_color: LooseColor = "#000000",
         transparent: bool = True,
         base_url: str = "/",
+        icon_types: Mapping[str,str|tuple(int)] = ICON_TYPES,
         *args: Any,
         **kwargs: Any,
     ) -> None:
         """Initialize Favicons class."""
         self._validated = False
         self._output_directory = output_directory
-        self._formats = tuple(generate_icon_types())
+        self._formats = tuple(generate_icon_types(icon_types))
         self.transparent = transparent
         self.base_url = base_url
         self.background_color: Color = Color(background_color)
