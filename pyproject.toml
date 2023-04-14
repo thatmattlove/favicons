@@ -17,42 +17,25 @@ license = "BSD-3-Clause-Clear"
 name = "favicons"
 readme = "README.md"
 repository = "https://github.com/thatmattlove/favicons"
-version = "0.1.1"
+version = "0.2.0"
 
 [tool.poetry.dependencies]
 pillow = "^9.5.0"
-python = ">=3.7,<4.0"
+python = ">=3.8.1,<4.0"
 rich = "^13.3.4"
 svglib = "^1.5.1"
 typer = "^0.7.0"
 
-[tool.poetry.dev-dependencies]
-black = "^19.10b0"
-flake8 = "^3.8.3"
-flake8-bandit = "^2.1.2"
-flake8-black = "^0.2.0"
-flake8-breakpoint = "^1.1.0"
-flake8-bugbear = "^20.1.4"
-flake8-builtins = "^1.5.3"
-flake8-comprehensions = "^3.2.3"
-flake8-deprecated = "^1.3"
-flake8-docstrings = "^1.5.0"
-flake8-eradicate = "^0.4.0"
-flake8-if-expr = "^1.0.4"
-flake8-isort = "^3.0.1"
-flake8-pie = "^0.5.0"
-flake8-plugin-utils = "^1.3.0"
-flake8-polyfill = "^1.0.2"
-flake8-print = "^3.1.4"
-flake8-return = "^1.1.2"
-isort = "^4.3"
-mccabe = "^0.6.1"
-mypy = "^0.782"
-pep8-naming = "^0.11.1"
-pre-commit = "^2.6.0"
-
 [tool.poetry.scripts]
 favicons = "favicons:cli"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+flake8 = "^6.0.0"
+isort = "^5.12.0"
+mypy = "^1.2.0"
+pre-commit = "^3.2.2"
+ruff = "^0.0.261"
 
 [tool.black]
 line-length = 100
@@ -60,3 +43,28 @@ line-length = 100
 [build-system]
 build-backend = "poetry.masonry.api"
 requires = ["poetry>=0.12"]
+
+[tool.ruff]
+exclude = [
+  ".git",
+  "__pycache__",
+  "test.py",
+]
+ignore = [
+  "RET504",
+  "D202",
+  "S301",
+]
+line-length = 100
+select = ["B", "C", "D", "E", "F", "N", "S", "RET", "W"]
+
+[tool.ruff.pydocstyle]
+convention = "pep257"
+
+[tool.ruff.mccabe]
+max-complexity = 10
+
+[tool.ruff.per-file-ignores]
+# Disable unused import warning for modules
+"favicons/*/__init__.py" = ["F401"]
+"favicons/__init__.py" = ["F401"]

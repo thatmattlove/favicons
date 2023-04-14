@@ -97,8 +97,8 @@ class Color:
                 if num not in range(0, 256):
                     raise FaviconColorError(rgb_iter)
                 yield num
-            except TypeError:
-                raise FaviconColorError(rgb_iter)
+            except TypeError as err:
+                raise FaviconColorError(rgb_iter) from err
 
     @staticmethod
     def _parse_rgbstr(rgbstr: str) -> Generator:

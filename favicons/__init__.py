@@ -4,7 +4,15 @@
 from favicons._generate import Favicons
 from favicons._exceptions import (
     FaviconsError,
-    FaviconNotFound,
     FaviconColorError,
-    FaviconNotSupported,
+    FaviconNotFoundError,
+    FaviconNotSupportedError,
+)
+
+__all__ = (
+    "Favicons",
+    "FaviconsError",
+    "FaviconNotFoundError",
+    "FaviconColorError",
+    "FaviconNotSupportedError",
 )

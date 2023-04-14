@@ -55,7 +55,7 @@ class FaviconsError(Exception):
         return _json.dumps(self.dict())
 
 
-class FaviconNotFound(FaviconsError):
+class FaviconNotFoundError(FaviconsError):
     """Raised if the source favicon doesn't exist."""
 
     def __init__(self, file: Path) -> None:
@@ -63,7 +63,7 @@ class FaviconNotFound(FaviconsError):
         super().__init__("{} does not exit.", str(file))
 
 
-class FaviconNotSupported(FaviconsError):
+class FaviconNotSupportedError(FaviconsError):
     """Raised if the source favicon file format is not supported."""
 
     def __init__(self, file: Path) -> None:

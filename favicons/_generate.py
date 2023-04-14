@@ -4,6 +4,7 @@
 import json as _json
 import math
 import asyncio
+from types import TracebackType
 from typing import (
     Any,
     Type,
@@ -24,7 +25,7 @@ from PIL import Image as PILImage
 from favicons._util import svg_to_png, validate_path, generate_icon_types
 from favicons._types import Color, FaviconProperties
 from favicons._constants import HTML_LINK, SUPPORTED_FORMATS
-from favicons._exceptions import FaviconNotSupported
+from favicons._exceptions import FaviconNotSupportedError
 
 LoosePath = Union[Path, str]
 LooseColor = Union[Collection[int], str]
@@ -67,7 +68,7 @@ class Favicons:
         self.output_directory = validate_path(self._output_directory, create=True)
 
         if self.source.suffix.lower() not in SUPPORTED_FORMATS:
-            raise FaviconNotSupported(self.source)
+            raise FaviconNotSupportedError(self.source)
 
         self._validated = True
 
@@ -77,7 +78,12 @@ class Favicons:
         self.generate = self.sgenerate
         return self
 
-    def __exit__(self, exc_type: Type = None, exc_value: Any = None, traceback: str = None) -> None:
+    def __exit__(
+        self,
+        exc_type: Optional[Type[BaseException]] = None,
+        exc_value: Optional[BaseException] = None,
+        traceback: Optional[TracebackType] = None,
+    ) -> None:
         """Exit Favicons context."""
         self._close_temp_source()
         pass
@@ -89,7 +95,10 @@ class Favicons:
         return self
 
     async def __aexit__(
-        self, exc_type: Type = None, exc_value: Any = None, traceback: str = None
+        self,
+        exc_type: Optional[Type[BaseException]] = None,
+        exc_value: Optional[BaseException] = None,
+        traceback: Optional[TracebackType] = None,
     ) -> None:
         """Exit Favicons context."""
         self._close_temp_source()
@@ -166,7 +175,9 @@ class Favicons:
         """Get generator of HTML strings."""
         for fmt in self._formats:
             yield HTML_LINK.format(
-                rel=fmt.rel, type=f"image/{fmt.image_fmt}", href=self.base_url + str(fmt),
+                rel=fmt.rel,
+                type=f"image/{fmt.image_fmt}",
+                href=self.base_url + str(fmt),
             )
 
     def html(self) -> Tuple:

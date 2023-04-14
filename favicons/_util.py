@@ -8,7 +8,7 @@ from tempfile import mkstemp
 # Project
 from favicons._types import Color, FaviconProperties
 from favicons._constants import ICON_TYPES
-from favicons._exceptions import FaviconsError, FaviconNotFound
+from favicons._exceptions import FaviconsError, FaviconNotFoundError
 
 
 def validate_path(path: Union[Path, str], must_exist: bool = True, create: bool = False) -> Path:
@@ -17,8 +17,8 @@ def validate_path(path: Union[Path, str], must_exist: bool = True, create: bool 
     if isinstance(path, str):
         try:
             path = Path(path)
-        except TypeError:
-            raise FaviconsError("{path} is not a valid path.", path=path)
+        except TypeError as err:
+            raise FaviconsError("{path} is not a valid path.", path=path) from err
 
     if create:
         if path.is_dir() and not path.exists():
@@ -27,7 +27,7 @@ def validate_path(path: Union[Path, str], must_exist: bool = True, create: bool 
             path.parent.mkdir(parents=True)
 
     if must_exist and not path.exists():
-        raise FaviconNotFound(path)
+        raise FaviconNotFoundError(path)
 
     return path
 
@@ -41,6 +41,7 @@ def generate_icon_types() -> Generator[FaviconProperties, None, None]:
 
 def svg_to_png(svg_path: Path, background_color: Color) -> Path:
     """Convert an SVG vector to a PNG file."""
+    # Third Party
     from svglib.svglib import svg2rlg
     from reportlab.graphics import renderPM
     from reportlab.lib.colors import transparent
