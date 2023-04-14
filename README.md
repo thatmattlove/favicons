@@ -9,7 +9,7 @@
 
 [![PyPI](https://img.shields.io/pypi/v/favicons?style=for-the-badge)](https://pypi.org/project/favicons/)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/favicons?style=for-the-badge)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/thatmattlove/favicons/Tests?style=for-the-badge)](https://github.com/thatmattlove/favicons/actions/workflows/ci.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/thatmattlove/favicons/ci.yml?style=for-the-badge)
 
 [![GitHub Contributors](https://img.shields.io/github/contributors/thatmattlove/favicons?style=for-the-badge&color=blueviolet)](https://github.com/thatmattlove/favicons)
 
