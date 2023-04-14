@@ -1,4 +1,5 @@
 # Project
+.DS_Store
 .vscode
 old_*.py
 test.py

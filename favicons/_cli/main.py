@@ -17,6 +17,8 @@ from favicons._types.properties import FaviconProperties
 cli = Typer(name="Favicons", add_completion=False)
 console = Console()
 
+DEFAULT_OUTPUT_PATH = Path.cwd()
+
 
 def item_name(item: FaviconProperties) -> str:
     """Format favicon name."""
@@ -24,7 +26,7 @@ def item_name(item: FaviconProperties) -> str:
 
 
 DEFAULT_SOURCE = Option(..., help="Source Image")
-DEFAULT_OUTPUT_DIR = Option(..., help="Output Directory")
+DEFAULT_OUTPUT_DIR = Option(DEFAULT_OUTPUT_PATH, help="Output Directory")
 DEFAULT_BG = Option("#000000", help="Background Color")
 DEFAULT_TRANSPARENT = Option(True, help="Transparent Background")
 DEFAULT_BASE_URL = Option("/", help="Base URL for HTML output")
