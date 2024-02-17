@@ -26,6 +26,7 @@ reportlab = "^4.1.0"
 rich = "^13.7.0"
 svglib = "^1.5.1"
 typer = "^0.9.0"
+rlpycairo = "^0.3.0"
 
 [tool.poetry.scripts]
 favicons = "favicons:cli"
