@@ -2,8 +2,6 @@
 authors = ["Matt Love <matt@hyperglass.dev>"]
 classifiers = [
   "Development Status :: 4 - Beta",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
@@ -23,11 +21,11 @@ version = "0.2.0"
 
 [tool.poetry.dependencies]
 pillow = "^10.2.0"
-python = ">=3.11.7,<4.0"
+python = ">=3.10.0,<4.0"
 reportlab = "^4.1.0"
-rich = "^13.3.4"
+rich = "^13.7.0"
 svglib = "^1.5.1"
-typer = "^0.7.0"
+typer = "^0.9.0"
 
 [tool.poetry.scripts]
 favicons = "favicons:cli"
@@ -53,21 +51,21 @@ exclude = [
   "__pycache__",
   "test.py",
 ]
-ignore = [
+lint.ignore = [
   "RET504",
   "D202",
   "S301",
 ]
 line-length = 100
-select = ["B", "C", "D", "E", "F", "N", "S", "RET", "W"]
+lint.select = ["B", "C", "D", "E", "F", "N", "S", "RET", "W"]
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "pep257"
 
-[tool.ruff.mccabe]
+[tool.ruff.lint.mccabe]
 max-complexity = 10
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 # Disable unused import warning for modules
 "favicons/*/__init__.py" = ["F401"]
 "favicons/__init__.py" = ["F401"]
