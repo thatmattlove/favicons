@@ -5,6 +5,8 @@ classifiers = [
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
   "Topic :: Multimedia :: Graphics :: Graphics Conversion",
   "Topic :: Internet :: WWW/HTTP",
   "Topic :: Software Development :: Libraries :: Python Modules",
@@ -20,8 +22,9 @@ repository = "https://github.com/thatmattlove/favicons"
 version = "0.2.0"
 
 [tool.poetry.dependencies]
-pillow = "^9.5.0"
-python = ">=3.8.1,<4.0"
+pillow = "^10.2.0"
+python = ">=3.11.7,<4.0"
+reportlab = "^4.1.0"
 rich = "^13.3.4"
 svglib = "^1.5.1"
 typer = "^0.7.0"
@@ -30,12 +33,12 @@ typer = "^0.7.0"
 favicons = "favicons:cli"
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.3.0"
-flake8 = "^6.0.0"
-isort = "^5.12.0"
-mypy = "^1.2.0"
-pre-commit = "^3.2.2"
-ruff = "^0.0.261"
+black = "^24.2.0"
+flake8 = "^7.0.0"
+isort = "^5.13.2"
+mypy = "^1.8.0"
+ruff = "^0.2.1"
+typing-extensions = "^4.9.0"
 
 [tool.black]
 line-length = 100

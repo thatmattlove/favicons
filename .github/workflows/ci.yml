@@ -2,34 +2,34 @@ name: Tests
 on: [push, pull_request]
 
 jobs:
-  tests:
-    name: CI Tests
-    strategy:
-      fail-fast: false
-      matrix:
-        poetry-version: [1.4.2]
-        python-version: ['3.8', '3.9', '3.10']
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: Git Checkout
-        uses: actions/checkout@v3
+    tests:
+        name: CI Tests
+        strategy:
+            fail-fast: false
+            matrix:
+                poetry-version: [1.7.1]
+                python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+                os: [ubuntu-latest]
+        runs-on: ${{ matrix.os }}
+        steps:
+            - name: Git Checkout
+              uses: actions/checkout@v4
 
-      - name: Install Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
+            - name: Install Python
+              uses: actions/setup-python@v4
+              with:
+                  python-version: ${{ matrix.python-version }}
 
-      - name: Install Poetry
-        uses: abatilo/actions-poetry@v2
-        with:
-          poetry-version: ${{ matrix.poetry-version }}
+            - name: Install Poetry
+              uses: abatilo/actions-poetry@v2
+              with:
+                  poetry-version: ${{ matrix.poetry-version }}
 
-      - name: Install Python Dependencies
-        run: poetry install
+            - name: Install Python Dependencies
+              run: poetry install
 
-      - name: Linting (Ruff)
-        run: poetry run ruff favicons
+            - name: Linting (Ruff)
+              run: poetry run ruff favicons
 
-      - name: Type Checking (MyPy)
-        run: poetry run mypy favicons
+            - name: Type Checking (MyPy)
+              run: poetry run mypy favicons

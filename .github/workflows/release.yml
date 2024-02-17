@@ -1,37 +1,37 @@
 name: Release to PyPI
 on:
-  release:
-    types: [published]
+    release:
+        types: [published]
 
 jobs:
-  release:
-    name: Release to PyPI
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: [3.9]
-        poetry-version: [1.4.2]
-        os: [ubuntu-latest]
-    runs-on: ubuntu-latest
+    release:
+        name: Release to PyPI
+        strategy:
+            fail-fast: false
+            matrix:
+                python-version: [3.12]
+                poetry-version: [1.7.1]
+                os: [ubuntu-latest]
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Git Checkout
-        uses: actions/checkout@v3
+        steps:
+            - name: Git Checkout
+              uses: actions/checkout@v4
 
-      - name: Install Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
+            - name: Install Python
+              uses: actions/setup-python@v4
+              with:
+                  python-version: ${{ matrix.python-version }}
 
-      - name: Install Poetry
-        uses: abatilo/actions-poetry@v2
-        with:
-          poetry-version: ${{ matrix.poetry-version }}
+            - name: Install Poetry
+              uses: abatilo/actions-poetry@v2
+              with:
+                  poetry-version: ${{ matrix.poetry-version }}
 
-      - name: Build favicons
-        run: |
-          poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
-          poetry build
+            - name: Build favicons
+              run: |
+                  poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
+                  poetry build
 
-      - name: Publish release
-        run: poetry publish
+            - name: Publish release
+              run: poetry publish
